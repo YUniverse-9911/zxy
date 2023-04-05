@@ -1,4 +1,22 @@
 <!-- 日历 -->
+
+<view>
+     <view>
+        <view class="weui-search-bar">
+            <view class="weui-search-bar__form">
+            <!-- 搜索框 -->
+                <view class="weui-search-bar__box">
+                    <icon class="weui-icon-search_in-box" type="search" size="14"></icon>
+                    <input type="text" class="weui-search-bar__input" bindinput="getvalue" placeholder="请输入搜索内容"/>
+                </view>
+            </view>
+            <!-- 搜索按钮,调用搜索查询方法 -->
+            <view class="weui-search-bar__cancel-btn" bindtap='searchValue'>搜索</view>
+        </view>
+    </view>
+</view>
+
+
 <view class="section">
   <view class="section__title">请选择学期</view>
   <picker bindchange="bindPickerChange" value="{{index}}" range="{{semesterTitle}}">

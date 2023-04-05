@@ -12,7 +12,9 @@ Page({
       theDay: "", //记录当前日期，比如2023123
       firstday:"",//某学期的第一天
 	    semester:"",//查看的学期
-	    weeks:0, //查看的学期的周数
+      weeks:0, //查看的学期的周数
+      inputvalue:"",//初始文本框内容为空
+      datasearch: "",//查询日期数组
 	    semesters:[['2016-2017-1','2016-9-4',19,6]
         ,['2016-2017-2','2017-2-26',19,8]
         ,['2017-2018-1','2017-9-3',19,7]
@@ -30,6 +32,36 @@ Page({
         ,['2023-2024-1','2023-9-3',19,6]
 	  ],
   },
+  
+  getvalue: function (e) {
+    console.log("获取value值",e.detail)
+    this.setData({
+      inputvalue: e.detail.value
+    })
+  },
+  //搜索显示
+  searchValue: function () {
+    // 获取用户输入框中的值
+    let searchvalue = this.data.inputvalue;
+    let m=this.data.month;
+    let y=this.data.year;
+    for (let i = 0; i < this.data.eventsArray.length; i++)
+      if(this.data.eventsArray[i][1]==searchvalue){
+        this.setData({
+          datasearch: this.data.eventsArray[i][0]
+        })
+        let datasearch1=this.data.datasearch
+        y=parseInt(datasearch1.substr(0,4));
+        m=parseInt(datasearch1.substr(4,2));     
+      }
+    this.setData({
+      month: m,
+      year:y,
+    });
+	  this.refresh();
+	  this.setPicker();
+  },
+
   addEvents:function(){
 	  //月历中填充事件
 	  let dateArr1=this.data.dateArr;
